@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">NHL results</string>
+    <string name="connection_error">Connection error</string>
+    <string name="xml_error">XML error</string>
+    <string name="page_title">Page title</string>
+    <string name="updated">Updated</string>
+</resources>
