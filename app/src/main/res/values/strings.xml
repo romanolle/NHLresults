@@ -4,4 +4,10 @@
     <string name="xml_error">XML error</string>
     <string name="page_title">Page title</string>
     <string name="updated">Updated</string>
+
+    <string name="from">Set from date</string>
+    <string name="to">Set to date</string>
+    <string name="reload">Reload</string>
+    <string name="loading">Loading new data</string>
+    <string name="connection_lost">Internet connection lost</string>
 </resources>

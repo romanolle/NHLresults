@@ -1,5 +1,7 @@
 package nf.co.olle.nhlresults.model.builder;
 
+import java.time.ZonedDateTime;
+
 import nf.co.olle.nhlresults.model.Game;
 import nf.co.olle.nhlresults.model.GameStatus;
 import nf.co.olle.nhlresults.model.Team;
@@ -10,7 +12,7 @@ public class GameBuilder {
     private Integer homeScore;
     private Integer awayScore;
     private GameStatus gameStatus;
-    private Integer startGameTime;
+    private ZonedDateTime startGameTime;
 
     public void setHomeTeam(Team homeTeam) {
         this.homeTeam = homeTeam;
@@ -32,7 +34,7 @@ public class GameBuilder {
         this.gameStatus = gameStatus;
     }
 
-    public void setStartGameTime(Integer startGameTime) {
+    public void setStartGameTime(ZonedDateTime startGameTime) {
         this.startGameTime = startGameTime;
     }
 

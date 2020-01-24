@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import nf.co.olle.nhlresults.json.InternetConnectionLost;
 import nf.co.olle.nhlresults.model.Game;
 import nf.co.olle.nhlresults.model.GameStatus;
 import nf.co.olle.nhlresults.model.Team;
@@ -39,8 +40,13 @@ public class NhlJsonParser {
     public NhlJsonParser(){
     }
 
-    public ArrayList<Game> parse(String response) {
+    public ArrayList<Game> parse(String response) throws InternetConnectionLost {
         ArrayList<Game> games = new ArrayList<>();
+
+        if(response == null || response.isEmpty() || response.startsWith("Unable to resolve host ")) {
+            throw new InternetConnectionLost();
+        }
+
         try {
             JSONObject jsonObject = new JSONObject(response);
 
@@ -87,9 +93,9 @@ public class NhlJsonParser {
         gameBuilder.setHomeScore(homeObj.getInt(SCORE_KEY));
         gameBuilder.setAwayScore(awayObj.getInt(SCORE_KEY));
 
-        //TODO date
-        //ZonedDateTime.parse(gameObj.getString(GAME_DATE_KEY));
-
+        try {
+            gameBuilder.setStartGameTime(ZonedDateTime.parse(gameObj.getString(GAME_DATE_KEY)));
+        } catch (Exception e) {}
         return gameBuilder.build();
     }
 
