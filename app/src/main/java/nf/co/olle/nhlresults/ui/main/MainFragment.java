@@ -114,7 +114,7 @@ public class MainFragment extends Fragment implements JsonTaskCallback {
         if(Network.isNetworkAvailable(root.getContext())) {
             reload();
         } else {
-            textView.setText(R.string.connection_lost);
+            noInternetAccess();
         }
         return root;
     }
@@ -149,6 +149,11 @@ public class MainFragment extends Fragment implements JsonTaskCallback {
 
 
 
+    private void noInternetAccess() {
+        textView.setText(R.string.connection_lost);
+        reloadButton.setEnabled(true);
+    }
+
     private boolean mobileDataConnected() {
         //TODO dodelat mobileDataConnected
         return true;
@@ -173,7 +178,7 @@ public class MainFragment extends Fragment implements JsonTaskCallback {
         try {
             games = parser.parse(response);
         } catch (InternetConnectionLost internetConnectionLost) {
-            textView.setText(R.string.connection_lost);
+            noInternetAccess();
             return;
         }
         StringBuilder builder = new StringBuilder(games.isEmpty() ? "No games for these days" : "");
